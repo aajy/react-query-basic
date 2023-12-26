@@ -6,5 +6,11 @@ const fetchUser = async () => {
 };
 
 export const useUserQuery = () => {
-	return useQuery({ queryKey: ['user'], queryFn: fetchUser });
+	return useQuery({
+		queryKey: ['user'],
+		queryFn: fetchUser,
+		refetchOnWindowFocus: false, //다른 브라우저탭 이동했따가 다시 넘어왔을 때 refetching안함
+		refetchOnMount: false, //재마운트시 refetching안함
+		gcTime: 1000 * 5,
+	});
 };
